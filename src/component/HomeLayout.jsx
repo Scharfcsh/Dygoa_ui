@@ -10,21 +10,25 @@ import {
   Users,
 } from "lucide-react";
 
-import RoomDetails from "../hooks/useGetRoomsDetails.js";
+// import RoomDetails from "../hooks/useGetRoomsDetails.js";/
 import TopLevelInfo from "./TopLevelInfo.jsx";
 
 const HomeLayout = ({ children }) => {
-  const [roomDetails, setRoomDetails] = useState([]);
-  useEffect(() => {
-    const fetchRoomDetails = async () => {
-      const data = await RoomDetails();
-      if (data) {
-        setRoomDetails(data);
-      }
-    };
+  const [gridDetails , setGridDetails] = useState({});
 
-    fetchRoomDetails();
-  }, []);
+  async function getGridDetails(){
+    try {
+      const response = await axios.get("http://localhost:3001/api/grids/details");
+      setGridDetails(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getGridDetails();
+  },[])
 
   const [selectedOption, setSelectedOption] = useState({
     type: "Demand v/s Production",
@@ -116,9 +120,6 @@ const HomeLayout = ({ children }) => {
 
             <main className="flex flex-col h-screen w-full p-8 overflow-y-scroll custom-scrollbar bg-gradient-to-br from-green-950 to-black rounded-3xl">
               {/* Hero Section */}
-
-              
-
               {children}
             </main>
           </div>

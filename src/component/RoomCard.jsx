@@ -1,24 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const RoomCard = ({ roomName,devices }) => {
-
+const RoomCard = ({ roomName, buildings }) => {
   const navigate = useNavigate();
 
   const colour = "#76e5b1";
-  const power = devices
-  .filter(device => device.status === "on")
-  .reduce((acc, device) => acc + device.wattage, 0);
-  
+  const activeBuildings = buildings.filter((building) => building.status);
+  const totalWattage = activeBuildings.reduce((acc, building) => acc + building.wattage, 0);
+
   return (
-    <div className="flex flex-1 items-center justify-center gap-4 p-8 rounded-lg bg-white/10 border border-green-900/50 z-50"
-    onClick={() => navigate("/grids")}
+    <div
+      className="flex flex-1 items-center justify-center gap-4 p-8 rounded-lg bg-white/10 border border-green-900/50 z-50"
+      onClick={() => navigate("/grids")}
     >
-      <div className="w-full" >
+      <div className="w-full">
         <h1 className="text-white font-medium">{roomName}</h1>
-        <p className={`text-[${colour}]`}>{length} Devices</p>
+        <p className="text-[#76e5b1]">{activeBuildings.length} Active Buildings</p>
       </div>
-      <div className=" ">
+      <div>
         <svg
           width="145"
           height="145"
@@ -50,11 +49,10 @@ const RoomCard = ({ roomName,devices }) => {
             fontWeight="bold"
             style={{ transform: "rotate(90deg) translate(0px, -161px)" }}
           >
-            {power}
+            {totalWattage}
           </text>
         </svg>
       </div>
-      <div></div>
     </div>
   );
 };
