@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom"
 import Grids from './pages/Grids'
 import SubGrid from './pages/SubGrid'
 import NotFound from './pages/NotFound'
+import HomeLayout from './component/HomeLayout'
 
 function App() {
   return (
