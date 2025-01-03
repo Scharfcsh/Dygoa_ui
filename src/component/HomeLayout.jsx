@@ -11,9 +11,10 @@ import {
 } from "lucide-react";
 
 import RoomDetails from "../hooks/useGetRoomsDetails.js";
+import TopLevelInfo from "./TopLevelInfo.jsx";
 
-const HomeLayout = ({children}) => {
-  const [roomDetails, setRoomDetails]  = useState([]);
+const HomeLayout = ({ children }) => {
+  const [roomDetails, setRoomDetails] = useState([]);
   useEffect(() => {
     const fetchRoomDetails = async () => {
       const data = await RoomDetails();
@@ -24,7 +25,7 @@ const HomeLayout = ({children}) => {
 
     fetchRoomDetails();
   }, []);
-  
+
   const [selectedOption, setSelectedOption] = useState({
     type: "Demand v/s Production",
   });
@@ -115,14 +116,22 @@ const HomeLayout = ({children}) => {
 
             <main className="flex flex-col h-screen w-full p-8 overflow-y-scroll custom-scrollbar bg-gradient-to-br from-green-950 to-black rounded-3xl">
               {/* Hero Section */}
+
               <div className="grid gap-6 mb-2">
                 <div className="fixed  w-full">
                   <div className="absolute top-[30rem] left-[30rem] w-[60rem] h-[50rem] bg-green-300 rounded-full mix-blend-multiply filter blur-[130px] opacity-20"></div>
                   <div className="absolute left-[-5rem] top-[-10rem] w-[30rem] h-[30rem] bg-purple-400 rounded-full mix-blend-multiply filter blur-[130px] opacity-30"></div>
                   <div className="absolute top-0 right-60 w-[30rem] h-[30rem] bg-pink-400 rounded-full mix-blend-multiply filter blur-[130px] opacity-25"></div>
                 </div>
-                {children}
+                <div className="p-1 rounded-xl ">
+                  <h2 className="absoulte text-2xl font-semibold text-white mb-4 z-50">
+                    Floor Overview
+                  </h2>
+                  <TopLevelInfo />
+                </div>
               </div>
+
+              {children}
             </main>
           </div>
         </div>
