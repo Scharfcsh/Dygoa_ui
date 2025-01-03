@@ -111,17 +111,17 @@ const EcoGridDashboard = () => {
   return (
     <HomeLayout>
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-6">
-        {/* <header className="text-center mb-8 relative">
-        <h1 className="text-4xl font-bold text-green-800 mb-2">EcoGrid Dashboard</h1>
+        <header className="text-center mb-8 relative">
+        <h1 className="text-4xl font-bold text-green-800 mb-2"> All grids Live Details</h1>
         <div className="flex justify-center items-center space-x-4 text-green-600">
           <Sun className="w-6 h-6 animate-spin-slow" />
           <Wind className="w-6 h-6 animate-bounce" />
           <Battery className="w-6 h-6 animate-pulse" />
         </div>
-      </header> */}
+      </header>
 
         {gridDetails ? (
-          <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+          <div className="max-w-9xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
             <div className="p-6 border-b border-gray-200 rounded-md">
               <h2 className="text-3xl font-semibold text-gray-800 mb-4">
                 {gridDetails.name}

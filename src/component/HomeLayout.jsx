@@ -118,7 +118,7 @@ const HomeLayout = ({ children }) => {
 
             {/* Main Content */}
 
-            <main className="flex flex-col h-screen w-full p-8 overflow-y-scroll custom-scrollbar bg-gradient-to-br from-green-950 to-black rounded-3xl">
+            <main className="flex flex-col h-screen w-full  overflow-y-scroll custom-scrollbar bg-gradient-to-br from-green-950 to-black rounded-3xl">
               {/* Hero Section */}
               {children}
             </main>
