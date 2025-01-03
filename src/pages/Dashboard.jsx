@@ -13,51 +13,50 @@ import axios from "axios";
 const DashBoard = () => {
 
   const navigate = useNavigate();
-
-  const [gridDetails , setGridDetails] = useState({
+  const [gridDetails, setGridDetails] = useState({
     "name": "Grid 1",
     "subgrids": [
-        {
-            "name": "Subgrid 1",
-            "buildings": [
-                {
-                    "wattage": 683,
-                    "status": true,
-                    "priority": 1,
-                    "name": "Building 1",
-                    "_id": "6777e15a8e906052d7ea255f",
-                    "createdAt": "2025-01-03T13:08:42.644Z",
-                    "updatedAt": "2025-01-03T13:08:42.644Z",
-                    "__v": 0
-                },
-                {
-                    "wattage": 213,
-                    "status": true,
-                    "priority": 3,
-                    "name": "Building 2",
-                    "_id": "6777e15a8e906052d7ea2561",
-                    "createdAt": "2025-01-03T13:08:42.682Z",
-                    "updatedAt": "2025-01-03T13:08:42.682Z",
-                    "__v": 0
-                }
-            ],
-            "_id": "6777e15a8e906052d7ea2563",
-            "createdAt": "2025-01-03T13:08:42.720Z",
-            "updatedAt": "2025-01-03T13:08:42.720Z",
-            "__v": 0,
-            "totalWattage": 896
-        }
+      {
+        "name": "Subgrid 1",
+        "buildings": [
+          {
+            "wattage": 683,
+            "status": true,
+            "priority": 1,
+            "name": "Building 1",
+            "_id": "6777e15a8e906052d7ea255f",
+            "createdAt": "2025-01-03T13:08:42.644Z",
+            "updatedAt": "2025-01-03T13:08:42.644Z",
+            "__v": 0
+          },
+          {
+            "wattage": 213,
+            "status": true,
+            "priority": 3,
+            "name": "Building 2",
+            "_id": "6777e15a8e906052d7ea2561",
+            "createdAt": "2025-01-03T13:08:42.682Z",
+            "updatedAt": "2025-01-03T13:08:42.682Z",
+            "__v": 0
+          }
+        ],
+        "_id": "6777e15a8e906052d7ea2563",
+        "createdAt": "2025-01-03T13:08:42.720Z",
+        "updatedAt": "2025-01-03T13:08:42.720Z",
+        "__v": 0,
+        "totalWattage": 896
+      }
     ],
     "_id": "6777e15a8e906052d7ea2565",
     "createdAt": "2025-01-03T13:08:42.771Z",
     "updatedAt": "2025-01-03T13:08:42.771Z",
     "__v": 0,
     "totalWattage": 896
-});
+  });
 
-  async function getGridDetails(){
+  async function getGridDetails() {
     try {
-      const response = await axios.get("https://shot-attacks-indicators-valve.trycloudflare.com/api/grids/details");
+      const response = await axios.get("https://shot-attacks-indicators-valve.trycloudflare.com/api/grids/details/67785a7ebae3aae905565775");
       setGridDetails(response.data);
       console.log(response.data);
     } catch (error) {
@@ -66,12 +65,15 @@ const DashBoard = () => {
   }
 
   useEffect(() => {
-    getGridDetails();
-  },[])
+    const interverId = setInterval(() => {
+      getGridDetails();
+    }, 1000);
+    return () => clearInterval(interverId)
+  }, [])
 
   console.log(gridDetails);
   const [selectedOption, setSelectedOption] = useState({
-    type: "Demand v/s Production",
+    type: "monthly",
   });
   const [isAdmin, setIsAdmin] = useState(true);
 
@@ -79,8 +81,8 @@ const DashBoard = () => {
     <a
       href={href}
       className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${active
-          ? "text-green-400 bg-green-500/10"
-          : "text-gray-400 hover:text-green-400 hover:bg-green-500/10"
+        ? "text-green-400 bg-green-500/10"
+        : "text-gray-400 hover:text-green-400 hover:bg-green-500/10"
         }`}
     >
       {icon}

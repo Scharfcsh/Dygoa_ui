@@ -37,7 +37,7 @@ const EcoGridDashboard = () => {
 
   async function getGridDetails() {
     try {
-      const response = await axios.get(`https://shot-attacks-indicators-valve.trycloudflare.com/api/grids/details`);
+      const response = await axios.get(`https://shot-attacks-indicators-valve.trycloudflare.com/api/grids/details/67785a7ebae3aae905565775`);
       setGridDetails(response.data);
     } catch (e) {
       console.log("Error in getting the grid details : ", e?.payload?.message);
@@ -123,8 +123,9 @@ const EcoGridDashboard = () => {
         {gridDetails ? (
           <div className="max-w-9xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
             <div className="p-6 border-b border-gray-200 rounded-md">
-              <h2 className="text-3xl font-semibold text-gray-800 mb-4">
-                {gridDetails.name}
+              <h2 className="text-3xl font-semibold font-serif text-gray-800 mb-4">
+                {/* {gridDetails.name} */}
+                Central Grid
               </h2>
               <div className="flex items-center justify-between">
                 <p className="text-gray-600 text-lg">
