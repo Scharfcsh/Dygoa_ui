@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.custom-scrollbar {
+    scrollbar-color: rgba(229, 183, 234, 0.995) rgba(65, 65, 65, 0);
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
