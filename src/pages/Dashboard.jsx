@@ -47,7 +47,24 @@ const DashBoard = () => {
 
   return (
     <HomeLayout>
+      <>
+      
+      
+      <div className="grid gap-6 mb-2">
+        <div className="fixed  w-full">
+          <div className="absolute top-[30rem] left-[30rem] w-[60rem] h-[50rem] bg-green-300 rounded-full mix-blend-multiply filter blur-[130px] opacity-20"></div>
+          <div className="absolute left-[-5rem] top-[-10rem] w-[30rem] h-[30rem] bg-purple-400 rounded-full mix-blend-multiply filter blur-[130px] opacity-30"></div>
+          <div className="absolute top-0 right-60 w-[30rem] h-[30rem] bg-pink-400 rounded-full mix-blend-multiply filter blur-[130px] opacity-25"></div>
+        </div>
+        <div className="p-1 rounded-xl ">
+          <h2 className="absoulte text-2xl font-semibold text-white mb-4 z-50">
+            Floor Overview
+          </h2>
+          <TopLevelInfo />
+        </div>
+      </div>
       {/* Placeholder for Dashboard */}
+
       <div className=" relative h-4/5 rounded-xl bg-white/10 border border-green-900 z-50">
         <AssignedToSelect
           selectedOption={selectedOption}
@@ -71,6 +88,7 @@ const DashBoard = () => {
         ))}
         {/* <RoomCard /> */}
       </div>
+      </>
     </HomeLayout>
   );
 };
