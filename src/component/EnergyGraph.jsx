@@ -68,14 +68,16 @@ const EnergyGraph = () => {
   const fetchData = async () => {
     try {
       const productionResponse = await fetch(
-        "http://127.0.0.1:5000/api/energy-production"
+        "https://gone-al-root-son.trycloudflare.com/api/energy/production"
       );
       const consumptionResponse = await fetch(
-        "http://127.0.0.1:5000/api/energy-demand"
+        "https://gone-al-root-son.trycloudflare.com/api/energy/demand"
       );
 
       const prodData = await productionResponse.json();
+      console.log(prodData);
       const consData = await consumptionResponse.json();
+      console.log(consData);
 
       // Ensure prodData and consData are arrays
       const formattedProdData = Array.isArray(prodData) ? prodData : [prodData];

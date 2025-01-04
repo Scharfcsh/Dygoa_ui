@@ -9,54 +9,56 @@ import RoomCard from "../component/RoomCard.jsx";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import PolarChart from "../component/PolarChart.jsx";
 
 const DashBoard = () => {
-
   const navigate = useNavigate();
   const [gridDetails, setGridDetails] = useState({
-    "name": "Grid 1",
-    "subgrids": [
+    name: "Grid 1",
+    subgrids: [
       {
-        "name": "Subgrid 1",
-        "buildings": [
+        name: "Subgrid 1",
+        buildings: [
           {
-            "wattage": 683,
-            "status": true,
-            "priority": 1,
-            "name": "Building 1",
-            "_id": "6777e15a8e906052d7ea255f",
-            "createdAt": "2025-01-03T13:08:42.644Z",
-            "updatedAt": "2025-01-03T13:08:42.644Z",
-            "__v": 0
+            wattage: 683,
+            status: true,
+            priority: 1,
+            name: "Building 1",
+            _id: "6777e15a8e906052d7ea255f",
+            createdAt: "2025-01-03T13:08:42.644Z",
+            updatedAt: "2025-01-03T13:08:42.644Z",
+            __v: 0,
           },
           {
-            "wattage": 213,
-            "status": true,
-            "priority": 3,
-            "name": "Building 2",
-            "_id": "6777e15a8e906052d7ea2561",
-            "createdAt": "2025-01-03T13:08:42.682Z",
-            "updatedAt": "2025-01-03T13:08:42.682Z",
-            "__v": 0
-          }
+            wattage: 213,
+            status: true,
+            priority: 3,
+            name: "Building 2",
+            _id: "6777e15a8e906052d7ea2561",
+            createdAt: "2025-01-03T13:08:42.682Z",
+            updatedAt: "2025-01-03T13:08:42.682Z",
+            __v: 0,
+          },
         ],
-        "_id": "6777e15a8e906052d7ea2563",
-        "createdAt": "2025-01-03T13:08:42.720Z",
-        "updatedAt": "2025-01-03T13:08:42.720Z",
-        "__v": 0,
-        "totalWattage": 896
-      }
+        _id: "6777e15a8e906052d7ea2563",
+        createdAt: "2025-01-03T13:08:42.720Z",
+        updatedAt: "2025-01-03T13:08:42.720Z",
+        __v: 0,
+        totalWattage: 896,
+      },
     ],
-    "_id": "6777e15a8e906052d7ea2565",
-    "createdAt": "2025-01-03T13:08:42.771Z",
-    "updatedAt": "2025-01-03T13:08:42.771Z",
-    "__v": 0,
-    "totalWattage": 896
+    _id: "6777e15a8e906052d7ea2565",
+    createdAt: "2025-01-03T13:08:42.771Z",
+    updatedAt: "2025-01-03T13:08:42.771Z",
+    __v: 0,
+    totalWattage: 896,
   });
 
   async function getGridDetails() {
     try {
-      const response = await axios.get("https://shot-attacks-indicators-valve.trycloudflare.com/api/grids/details/67785a7ebae3aae905565775");
+      const response = await axios.get(
+        "https://shot-attacks-indicators-valve.trycloudflare.com/api/grids/details/67785a7ebae3aae905565775"
+      );
       setGridDetails(response.data);
       console.log(response.data);
     } catch (error) {
@@ -68,8 +70,8 @@ const DashBoard = () => {
     const interverId = setInterval(() => {
       getGridDetails();
     }, 1000);
-    return () => clearInterval(interverId)
-  }, [])
+    return () => clearInterval(interverId);
+  }, []);
 
   console.log(gridDetails);
   const [selectedOption, setSelectedOption] = useState({
@@ -80,10 +82,11 @@ const DashBoard = () => {
   const NavLink = ({ href, icon, children, active }) => (
     <a
       href={href}
-      className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${active
-        ? "text-green-400 bg-green-500/10"
-        : "text-gray-400 hover:text-green-400 hover:bg-green-500/10"
-        }`}
+      className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${
+        active
+          ? "text-green-400 bg-green-500/10"
+          : "text-gray-400 hover:text-green-400 hover:bg-green-500/10"
+      }`}
     >
       {icon}
       <span>{children}</span>
@@ -109,16 +112,21 @@ const DashBoard = () => {
         {/* Placeholder for Dashboard */}
 
         <div className=" relative h-4/5 rounded-xl bg-white/10 border border-green-900 z-50">
-          <AssignedToSelect
-            selectedOption={selectedOption}
-            setSelectedOption={setSelectedOption}
-          />
-          {selectedOption.type === "Demand v/s Production" ? (
-            // <EnergyGraph />
-            ""
-          ) : (
-            <ProgressiveLine />
-          )}
+          <div className="p-28 bg-transparent rounded-md shadow-md h-full relative">
+            <AssignedToSelect
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
+            {selectedOption.type === "Demand v/s Production" ? (
+              // <EnergyGraph />
+              <PolarChart />
+            ) : (
+              <ProgressiveLine />
+            )}
+          </div>
+          <div>
+            
+          </div>
         </div>
         {/* Room detail section */}
         {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-6 p-1 mt-2">
@@ -141,7 +149,6 @@ const DashBoard = () => {
             />
           ))}
         </div>
-
       </>
     </HomeLayout>
   );

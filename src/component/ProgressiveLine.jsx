@@ -6,7 +6,13 @@ Chart.register(...registerables);
 const ProgressiveLine = () => {
     const chartRef = useRef(null);
 
-    useEffect(() => {
+    useEffect(async () => {
+        const productionResponse = await fetch(
+            "https://gone-al-root-son.trycloudflare.com/api/energy/production"
+          );
+          const consumptionResponse = await fetch(
+            "https://gone-al-root-son.trycloudflare.com/api/energy/demand"
+          );
         const data = [];
         const data2 = [];
         let prev = 100;
